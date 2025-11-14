@@ -37,6 +37,9 @@ MLFLOW_TRACKING_URI=snowflake_mlruns
 EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
 STREAMLIT_APP="Snowflake Q&A with Evaluation"
 TOP_K=5
+SYSTEM_PROMPT="You are a helpful Q&A assistant to answer the question related to snowflake datawarehouse.
+Use the provided context to answer the user's question. If there is no context or the question
+is not related to snowflake warehouse just reply `Sorry, I cannot answer this as it is not a relevant question.`"
 
 # Set to "eval" during development, "prod" for production
 APP_MODE=prod
