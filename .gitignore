@@ -1,3 +1,5 @@
+llm_models
+chatbot
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -150,6 +152,8 @@ venv.bak/
 
 # Rope project settings
 .ropeproject
+
+snowflake_mlruns/
 
 # mkdocs documentation
 /site
