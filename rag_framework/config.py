@@ -21,7 +21,7 @@ class Config:
             # Storage and sources
             self.source_dir = os.getenv("SOURCE_DIR", "./data")
             self.storage_dir = os.getenv("STORAGE_DIR", "./storage")
-
+            self.feedback_dir = os.getenv("FEEDBACK_DIR")
             # MLflow
             self.mlflow_tracking_uri = os.getenv("MLFLOW_TRACKING_URI", "mlruns")
             self.mlflow_experiment = os.getenv("MLFLOW_EXPERIMENT", "rag_experiment")

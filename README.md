@@ -40,6 +40,7 @@ TOP_K=5
 SYSTEM_PROMPT="You are a helpful Q&A assistant to answer the question related to snowflake datawarehouse.
 Use the provided context to answer the user's question. If there is no context or the question
 is not related to snowflake warehouse just reply `Sorry, I cannot answer this as it is not a relevant question.`"
+FEEDBACK_DIR=<feedback-dir>
 
 # Set to "eval" during development, "prod" for production
 APP_MODE=prod
@@ -71,7 +72,6 @@ python -m rag_framework.app
 
 
 ### 5. Run the streamlit app
-python -m rag_framework.app
 
 ```bash
 $env:PYTHONPATH = "<root-dir-of-this-project>"
@@ -84,6 +84,7 @@ rag_framework/
 ├── __init__.py
 ├── app.py                        # CLI evaluation runner
 ├── streamlit_app.py              # Streamlit UI
+├── feedback_logger.py            # Logs human & mlflow feedback
 ├── config.py                     # Loads env, validates, defaults
 ├── core/
 │   ├── embeddings.py             # Embedder abstraction (SentenceTransformers)
