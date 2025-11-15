@@ -1,7 +1,9 @@
 import os
+import uuid
 import streamlit as st
 from datetime import datetime
 
+from rag_framework.feedback_logger import log_feedback, log_mlflow_feedback
 from rag_framework.config import Config
 from rag_framework.core.embeddings import Embedder
 from rag_framework.core.vector_store import VectorStore
@@ -26,9 +28,76 @@ evaluator = Evaluator(
     experiment_name=cfg.mlflow_experiment
 ) if cfg.app_mode == "eval" else None
 
+# Feedback storage file
+feedback_dir = cfg.feedback_dir
+
+if "session_id" not in st.session_state:
+    st.session_state.session_id = str(uuid.uuid4())
+
 # UI
 st.title(cfg.streamlit_app)
 query = st.text_input("Ask a question:")
+
+
+
+# Run RAG
+if st.button("Run RAG"):
+    if query.strip():
+        answer = chain.run(query)
+        st.session_state.last_query = query
+        st.session_state.last_answer = answer
+
+        st.subheader("Answer")
+        st.write(answer)
+
+        if evaluator:
+            contexts = [d["content"] for d in retriever.retrieve(query)]
+            result = evaluator.evaluate(query=query, context_docs=contexts, answer=answer)
+            st.subheader("Evaluation Scores")
+            st.json(result["scores"])
+            st.subheader("Qualitative Feedback")
+            st.write(result["qualitative"])
+    else:
+        st.warning("Please enter a question.")
+
+# Feedback controls (render whenever we have a recent answer)
+if "last_answer" in st.session_state and st.session_state.last_answer:
+    st.subheader("Provide feedback")
+    col1, col2 = st.columns(2)
+
+    if col1.button("👍 Correct"):
+        log_feedback(
+            query=st.session_state.last_query,
+            answer=st.session_state.last_answer,
+            feedback="up",
+            feedback_dir=feedback_dir,
+            session_id=st.session_state.session_id
+        )
+        st.success("Feedback recorded: 👍")
+        log_mlflow_feedback(
+            st.session_state.last_query,
+            st.session_state.last_answer,
+            "up",
+            cfg,
+            st.session_state.session_id
+        )
+
+    if col2.button("👎 Incorrect"):
+        log_feedback(
+            query=st.session_state.last_query,
+            answer=st.session_state.last_answer,
+            feedback="down",
+            feedback_dir=feedback_dir,
+            session_id=st.session_state.session_id
+        )
+        st.success("Feedback recorded: 👎")
+        log_mlflow_feedback(
+            st.session_state.last_query,
+            st.session_state.last_answer,
+            "up",
+            cfg,
+            st.session_state.session_id
+        )
 
 # Add text docs
 st.subheader("Add new text to knowledge base")
@@ -48,20 +117,3 @@ if st.button("Add to Vector Store"):
         st.success(f"Stored and saved as {doc_id}")
     else:
         st.warning("Please enter some text before adding.")
-
-# Run RAG
-if st.button("Run RAG"):
-    if query.strip():
-        answer = chain.run(query)
-        st.subheader("Answer")
-        st.write(answer)
-
-        if evaluator:
-            contexts = [d["content"] for d in retriever.retrieve(query)]
-            result = evaluator.evaluate(query=query, context_docs=contexts, answer=answer)
-            st.subheader("Evaluation Scores")
-            st.json(result["scores"])
-            st.subheader("Qualitative Feedback")
-            st.write(result["qualitative"])
-    else:
-        st.warning("Please enter a question.")
