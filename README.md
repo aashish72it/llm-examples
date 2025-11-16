@@ -86,6 +86,7 @@ streamlit run rag_framework/streamlit_app.py
 
 ### Project Structure
 
+<pre>
 rag_framework/
 ├── __init__.py
 ├── app.py                        # CLI evaluation runner
@@ -108,4 +109,4 @@ rag_framework/
 ├── tests/
 │   └── ingest.py                 # Smoke test: ingestion + query
 └── requirements.txt
-
+<pre>
