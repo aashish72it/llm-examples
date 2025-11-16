@@ -35,6 +35,12 @@ if "session_id" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())
 
 # UI
+st.set_page_config(
+    page_title=cfg.streamlit_app,
+    page_icon="🤖",
+    layout="wide"
+)
+
 st.title(cfg.streamlit_app)
 query = st.text_input("Ask a question:")
 
