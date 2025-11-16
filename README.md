@@ -16,7 +16,7 @@ It provides a Streamlit UI for interactive Q&A and supports ingestion of custom 
 
 ## ⚙️ Setup Instructions
 
-### 1. Create `.env` file
+### 1. Create `.env` file in project root directory
 Add the following environment variables:
 
 ```env
@@ -47,36 +47,42 @@ APP_MODE=prod
 
 # set to cpu if working on local machine
 EMBEDDING_DEVICE=cpu
+```
 
 ### 2. Create virtual environment & install dependencies
-Create a Python virtual environment and install the required packages:
+Create a Python virtual environment and install the required packages. Run the below from commands from **project root directory**
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate   # On Linux/Mac
 .venv\Scripts\activate      # On Windows
 
-```bash
 pip install -r rag_framework/requirements.txt
+```
 
-
-### 3. Test the ingestion
+### 3. Test the ingestion to make sure source file(s) ingested as expected in vector database.
 
 ```bash
+cd rag_framework
 python -m rag_framework.tests.ingest
+```
 
-### 4. Test the evaluation
+### 4. Test the evaluation. 
+Check all the important metrics like faithfullness, answer_relevancy, context_precision, context_recall.
+Make sure the APP_MODE is set to eval to test the evaluation in chatbot. It will be off for **APP_MODE = prod**
 
 ```bash
 python -m rag_framework.app
-
+```
 
 ### 5. Run the streamlit app
 
 ```bash
+cd ..
+
 $env:PYTHONPATH = "<root-dir-of-this-project>"
 streamlit run rag_framework/streamlit_app.py
-
+```
 
 ### Project Structure
 
