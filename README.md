@@ -68,7 +68,7 @@ python -m rag_framework.tests.ingest
 ```
 
 ### 4. Test the evaluation. 
-Check all the important metrics like faithfullness, answer_relevancy, context_precision, context_recall.
+Check all the important metrics like faithfulness, answer_relevancy, context_precision, context_recall.
 Make sure the APP_MODE is set to eval to test the evaluation in chatbot. It will be off for **APP_MODE = prod**
 
 ```bash
