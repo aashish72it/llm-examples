@@ -46,8 +46,14 @@ def chatbot():
         print(f"Genie: {llm_response}\n")
 
         # Update history
+        ## only below values allowed: 
+        # ['human', 'user', 'ai', 'assistant', 'function', 'tool', 'system', 'developer']
+        ## otherwise you will get below error
+        # ValueError: Unexpected message type: 'llm'. 
+        # Use one of 'human', 'user', 'ai', 'assistant', 'function', 'tool', 'system', or 'developer'.  
         history.append(("user", user_input))
         history.append(("assistant", llm_response))
+
 
 if __name__ == "__main__":
     chatbot()
