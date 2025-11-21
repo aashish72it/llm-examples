@@ -30,3 +30,9 @@ source .venv/bin/activate   # On Linux/Mac
 pip install -r poc/requirements.txt
 ```
 
+### 3. Execute the script to initiate the chatbot
+
+```bash
+python .\poc\chatbot_with_memory\chatbot.py
+```
+
