@@ -1,4 +1,4 @@
-# Snowflake RAG Framework
+# LLM Examples
 
 This repository has llm examples & various use cases.
 
