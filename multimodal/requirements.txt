@@ -1,0 +1,43 @@
+# Core
+python-dotenv==1.0.1
+mlflow==2.16.2
+streamlit==1.39.0
+
+# LLM + RAG
+langchain==0.3.7
+groq==0.9.0
+ragas==0.1.9
+
+# Embeddings
+sentence-transformers==3.2.1
+transformers==4.44.2
+torch==2.4.1
+numpy==1.26.4
+scikit-learn==1.5.2
+
+# Vector DB
+chromadb==0.5.3
+faiss-cpu==1.8.0
+
+# Audio
+openai-whisper==20231117
+pydub==0.25.1
+soundfile==0.12.1
+
+# Images
+Pillow==10.4.0
+opencv-python==4.10.0.84
+requests==2.32.3
+
+# Video
+moviepy==1.0.3
+
+# Utilities
+tqdm==4.66.5
+pandas==2.2.3
+PyPDF2==3.0.1
+docx==0.2.4
+opencv-python
+PyMuPDF==1.26.6
+onnxruntime==1.23.2
+langchain-huggingface

@@ -1,0 +1,4 @@
+langchain-community>=0.2.0
+langchain
+langchain-groq
+python-dotenv
