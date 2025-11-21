@@ -100,7 +100,7 @@ if "last_answer" in st.session_state and st.session_state.last_answer:
         log_mlflow_feedback(
             st.session_state.last_query,
             st.session_state.last_answer,
-            "up",
+            "down",
             cfg,
             st.session_state.session_id
         )
