@@ -1,3 +1,5 @@
+llm_models
+chatbot
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -135,11 +137,11 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+.env*
 .envrc
-.venv
+.venv*
 env/
-venv/
+venv*/
 ENV/
 env.bak/
 venv.bak/
@@ -150,6 +152,8 @@ venv.bak/
 
 # Rope project settings
 .ropeproject
+
+snowflake_mlruns/
 
 # mkdocs documentation
 /site

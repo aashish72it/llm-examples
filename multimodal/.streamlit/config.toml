@@ -1,0 +1,17 @@
+[server]
+# Prefer "none" during development to write inside the project tree
+fileWatcherType = "none"
+maxMessageSize = 250
+enableCORS = false
+enableXsrfProtection = true
+runOnSave = false
+
+# For live-reload, use "auto" and blacklist your writable dirs instead:
+# fileWatcherType = "auto"
+# folderWatchBlacklist = [
+#   "C:/Users/aaskumar1/multimodal/logs",
+#   "C:/Users/aaskumar1/multimodal/chromadb",
+#   "C:/Users/aaskumar1/multimodal/uploads",
+#   "C:/Users/aaskumar1/multimodal/store_input_docs",
+#   "C:/Users/aaskumar1/multimodal/session_log.txt"
+# ]
