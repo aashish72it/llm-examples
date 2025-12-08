@@ -4,6 +4,9 @@ chatbot
 __pycache__/
 *.py[codz]
 *$py.class
+poc/mcp/weather/.venv/**
+poc/mcp/weather/.python-version
+poc/mcp/weather/uv.lock
 
 # C extensions
 *.so
